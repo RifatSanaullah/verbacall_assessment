@@ -1,65 +1,80 @@
-Overview
-VerbaCall is an intelligent voice assistant system designed to automate and streamline appointment management for medical offices. The system leverages advanced speech-to-text (STT), natural language processing (NLP), and noise-handling strategies to ensure accessibility, accuracy, and reliability—especially for elderly or medically vulnerable patients.
-
-Use Case Scenario
-The AI assistant handles inbound patient calls with natural, empathetic conversation, supporting:
-- Appointment Booking
-- Rescheduling
-- Cancellations
-
-The system ensures clarity and avoids hallucinations by confirming ambiguous inputs and avoiding medical advice.
-
-Optimized AI Prompt Design
-The assistant’s core behavior is defined by a structured yet simplified prompt optimized from 209 to 142 tokens (32% reduction), preserving essential logic:
-
-Booking: Verifies identity, collects insurance (if new), gathers visit reason, offers 2–3 slots, confirms all details.
-
-Rescheduling: Retrieves and verifies existing appointments, suggests alternatives, confirms changes.
-Cancellations: Verifies identity, confirms cancellation intent, offers to reschedule.
-Note: The assistant never makes medical decisions—those are referred to doctors.
-
-Adversarial Input Handling
-To guard against misunderstood or conflicting speech:
-
-1. Vague Speech Detection
-Detected phrases: “thing”, “something”, or hesitation
-System prompts:
-“Is this about: (1) Booking (2) Symptoms (3) Follow-up?”
-
-2. Conflicting Intent Detection
-Detected phrases: “cancel” + “move”
-System clarifies:
-“Do you want to (1) Cancel or (2) Reschedule?”
-
-This safeguards the system from making invalid or premature actions.
-
-Accent & Noise Handling Pipeline
-A robust speech recognition system is deployed using the following architecture:
-
-Components:
-Pre-Processing: Noise reduction via noisereduce (Python)
+**#Verbacall Assessment**
 
 
-Empirical Evaluation Strategy
-The system is tested using realistic multilingual and noisy datasets:
+**###Part 1**
+**Overview**
+    In part 1, the task was to optimize the prompt without changing it's intent or meaning, I tried to optimized the prompt using Simple LLMChain.
 
-Sample Type	Count
-Elderly Bengali-English	10
-Elderly Spanish-English	10
-Noisy Landline Simulations	5
+    Use Case Scenario
+    The AI assistant handles inbound patient calls with natural, empathetic conversation, supporting:
+    - Appointment Booking
+    - Rescheduling
+    - Cancellations
 
-Key Evaluation Metrics:
-Word Error Rate (WER): via jiwer
-Intent Accuracy: Correct routing of booking/cancellation/rescheduling flows
-Medical Term Precision: Correct interpretation of clinical terminology
+    The system ensures clarity and avoids hallucinations by confirming ambiguous inputs and avoiding medical advice.
+    ###Run the task
+    - First install `requirements.txt`
+    - **N.B.:** Before running, make sure to modify the path inside the `prompt_optimization.py` file as needed.
+        
+        Run the command:
 
-Call Session Architecture:
-Caller ➝ Voice API ➝ STT Service ➝ GPT Processing ➝ TTS Response ➝ CRM Update
+        ```bash
+        python prompt_optimization.py
+        ```
+**###Part 2**
+    In part 2, the task was to implement and design a STT pipeline to reduce the noise and understand the speech of elder people with faster processing.
 
-Voice API: Handles call routing and TTS output
-STT Service: Combines noise reduction and wav2vec2 for transcription
-AI Layer: Interprets user intent and manages conversation
-CRM Integration: Logs and updates appointment information
+    Use Case Scenario
+    The STT pipeline features are:
+    - Noise Reduction
+    - Higher Accuracy for STT and noisereduction
+    - Easier to convert text for elder people speech
+    - Faster Processing for processing the text from speech
 
-Summary
-VerbaCall is a secure, voice-enabled virtual assistant that simplifies patient interaction over the phone. It balances accessibility, clarity, and robustness using real-world STT processing, adversarial intent logic, and multilingual support—all within a privacy-conscious medical context.
+    ###Run the task
+    - First install `requirements.txt`
+    - **N.B.:** Before running, make sure to modify the path inside the `stt.py` file as needed.
+        
+        Run the command:
+
+        ```bash
+        python stt.py
+        ```
+
+**###Part 3**
+    In part 3, the task was to implement and design a call session recovery task by saving the user session id.
+
+    Use Case Scenario
+    The call session recovery pipeline features are:
+    - Save Audio, text under different session id
+    - if any user lost their connection in the midway, it can be retrived from the database for continuing communication
+
+    ###Run the task
+    - First install `requirements.txt`
+    - **N.B.:** Before running, make sure to modify the path inside the `session_stt.py` file as needed.
+        
+        Run the command:
+
+        ```bash
+        python session_stt.py
+        ```
+
+**###Part 4**
+    In part 4, the task was to implement a python CLI tool.
+
+    The tasks are:
+    - Takes a .wav file
+    - Streams it to STT
+    - Summarizes using GPT
+    - Saves result as a JSON log with session ID
+
+
+    ###Run the task
+    - First install `requirements.txt`
+    - **N.B.:** Before running, make sure to modify the path inside the `Assessment.py` file as needed.
+        
+        Run the command:
+
+        ```bash
+        python Assessment.py
+        ```
