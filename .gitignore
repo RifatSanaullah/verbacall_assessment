@@ -1,3 +1,4 @@
 assessment_venv/
 *.json
 .idea/
+.venv/

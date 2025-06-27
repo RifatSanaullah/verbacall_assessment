@@ -1,80 +1,104 @@
-**#Verbacall Assessment**
+# VerbaCall Assessment
 
+This repository includes a four-part implementation related to AI-driven voice assistants, covering prompt optimization, speech-to-text (STT) processing, call session recovery, and a CLI tool.
 
-**###Part 1**
-**Overview**
-    In part 1, the task was to optimize the prompt without changing it's intent or meaning, I tried to optimized the prompt using Simple LLMChain.
+---
 
-    Use Case Scenario
-    The AI assistant handles inbound patient calls with natural, empathetic conversation, supporting:
-    - Appointment Booking
-    - Rescheduling
-    - Cancellations
+## Part 1: Prompt Optimization
 
-    The system ensures clarity and avoids hallucinations by confirming ambiguous inputs and avoiding medical advice.
-    ###Run the task
-    - First install `requirements.txt`
-    - **N.B.:** Before running, make sure to modify the path inside the `prompt_optimization.py` file as needed.
-        
-        Run the command:
+### Overview
+In Part 1, the task was to optimize the prompt without changing its intent or meaning. I used a simple `LLMChain` from LangChain for this purpose.
 
-        ```bash
-        python prompt_optimization.py
-        ```
-**###Part 2**
-    In part 2, the task was to implement and design a STT pipeline to reduce the noise and understand the speech of elder people with faster processing.
+### Use Case Scenario
+The AI assistant handles inbound patient calls with natural, empathetic conversation, supporting:
+- Appointment Booking
+- Rescheduling
+- Cancellations
 
-    Use Case Scenario
-    The STT pipeline features are:
-    - Noise Reduction
-    - Higher Accuracy for STT and noisereduction
-    - Easier to convert text for elder people speech
-    - Faster Processing for processing the text from speech
+The system ensures clarity and avoids hallucinations by:
+- Confirming ambiguous inputs
+- Avoiding any form of medical advice
 
-    ###Run the task
-    - First install `requirements.txt`
-    - **N.B.:** Before running, make sure to modify the path inside the `stt.py` file as needed.
-        
-        Run the command:
+### Run the Task
+1. Install dependencies:
+    ```bash
+    pip install -r requirements.txt
+    ```
 
-        ```bash
-        python stt.py
-        ```
+    **N.B.:** Before running, make sure to modify the path inside the `prompt_optimization.py` file as needed.
 
-**###Part 3**
-    In part 3, the task was to implement and design a call session recovery task by saving the user session id.
+2. Run the script:
+    ```bash
+    python prompt_optimization.py
+    ```
 
-    Use Case Scenario
-    The call session recovery pipeline features are:
-    - Save Audio, text under different session id
-    - if any user lost their connection in the midway, it can be retrived from the database for continuing communication
+---
 
-    ###Run the task
-    - First install `requirements.txt`
-    - **N.B.:** Before running, make sure to modify the path inside the `session_stt.py` file as needed.
-        
-        Run the command:
+## Part 2: STT Pipeline
 
-        ```bash
-        python session_stt.py
-        ```
+### Overview
+In Part 2, the task was to implement a Speech-to-Text (STT) pipeline focused on reducing noise and improving recognition accuracy for elderly speech.
 
-**###Part 4**
-    In part 4, the task was to implement a python CLI tool.
+### Key Features
+- Noise Reduction
+- Higher Accuracy for STT
+- Better transcription of elderly speech
+- Faster processing
 
-    The tasks are:
-    - Takes a .wav file
-    - Streams it to STT
-    - Summarizes using GPT
-    - Saves result as a JSON log with session ID
+### Run the Task
+1. Install dependencies:
+    ```bash
+    pip install -r requirements.txt
+    ```
+    **N.B.:** Before running, make sure to modify the path inside the `stt.py` file as needed.
 
+2. Run the script:
+    ```bash
+    python stt.py
+    ```
 
-    ###Run the task
-    - First install `requirements.txt`
-    - **N.B.:** Before running, make sure to modify the path inside the `Assessment.py` file as needed.
-        
-        Run the command:
+---
 
-        ```bash
-        python Assessment.py
-        ```
+## Part 3: Call Session Recovery
+
+### Overview
+In Part 3, the task was to implement a session recovery mechanism by saving user session data including audio and transcribed text.
+
+### Key Features
+- Save audio and text under different session IDs
+- Retrieve session if user loses connection mid-call
+
+### Run the Task
+1. Install dependencies:
+    ```bash
+    pip install -r requirements.txt
+    ```
+    **N.B.:** Before running, make sure to modify the path inside the `session_stt.py` file as needed.
+
+2. Run the script:
+    ```bash
+    python session_stt.py
+    ```
+
+---
+
+## Part 4: Python CLI Tool
+
+### Overview
+In Part 4, the task was to develop a Python CLI tool that:
+- Takes a `.wav` audio file
+- Streams it to an STT engine
+- Summarizes the result using GPT
+- Saves the output as a JSON log with a session ID
+
+### Run the Task
+1. Install dependencies:
+    ```bash
+    pip install -r requirements.txt
+    ```
+    **N.B.:** Before running, make sure to modify the path inside the `Assessment.py` file as needed.
+
+2. Run the script:
+    ```bash
+    python Assessment.py
+    ```
